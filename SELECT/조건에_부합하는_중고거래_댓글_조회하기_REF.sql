@@ -1,0 +1,26 @@
+
+SELECT
+    b.TITLE,b.BOARD_ID,
+    r.REPLY_ID,r.WRITER_ID,r.CONTENTS,
+    DATE_FORMAT(r.CREATED_DATE, "%Y-%m-%d") AS CREATED_DATE
+    
+FROM USED_GOODS_BOARD AS b INNER JOIN USED_GOODS_REPLY AS r
+ON b.BOARD_ID=r.BOARD_ID
+WHERE b.CREATED_DATE >="2022-10-01" AND b.CREATED_DATE<"2022-11-01"
+ORDER BY r.CREATED_DATE ASC, b.TITLE ASC;
+
+/*
+DATE_FORMAT(DATE, "%Y-%m-%d")의 두번째 파라미터에 대해
+%Y : 4자리 연도(2025)  / %y : 2자리 연도(25)
+%M : 월 이름(December) / %m : 2자리 월(12)
+%D : 일+서수(18th)     / %d : 2자리 일 18
+*/
+
+/*
+INNER JOIN
+SELECT 
+    t1.C1,t1.C2,
+    t2.C1,t2.C2
+FROM TABLE1 AS t1 INNER JOIN TABLE2 AS t2 ON t1.ID=t2.ID
+-> TABLE1과 TABLE2를 JOIN하는데, ON 절에 만족하는 행만 가져옴
+*/
